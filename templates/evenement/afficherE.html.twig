@@ -1,0 +1,63 @@
+{% extends 'dashboard.html.twig' %}
+
+
+
+
+{% block body %}
+
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 50px;">
+
+    <div class="col-lg-14">
+
+        <div class="card">
+            <div class="card-body">
+                <i class="ri-arrow-left-circle-fill" style="font-size: 50px;"></i>
+
+                <h5 class="card-title">Liste des EVENEMENT</h5>
+
+                {% for message in app.flashes('success')%}
+                    <div class="alert alert-success">
+
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>prix</th>
+                        <th>recompense</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for c in evenement %}
+                        <tr>
+                            <td>{{ c.nom }}</td>
+                            <td>{{ c.prix }}</td>
+                            <td>{{ c.recompense }}</td>
+
+
+
+                            <td>
+                                <a class="btn btn-success" href="{{ path('updateE',{'ideven' : c.ideven}) }}">Modifier</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('deleteE',{'ideven' : c.ideven}) }}">Delete</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
