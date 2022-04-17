@@ -36,7 +36,7 @@ class EvenementController extends AbstractController
 
     }
     /**
-     * @Route("/supp {ideven}", name="deleteE")
+     * @Route("/suppE {ideven}", name="deleteE")
      */
     public function Delete($ideven , EvenementRepository $repository)
     {

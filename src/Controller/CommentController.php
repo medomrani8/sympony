@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Commentaire;
 use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,18 +28,19 @@ class CommentController extends AbstractController
      * @return Response
      */
     public function add(Request $request ): Response
-    {   $em = $this->getDoctrine()->getManager();
-        $commentaire= new Commentaire();
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commentaire = new Commentaire();
 //        $form = $this->createForm(CommentType::class, $commentaire);
 //        $form->handleRequest($request);
-        if ($request->isMethod('POST')){
+        if ($request->isMethod('POST')) {
             $commentaire->setComment($request->get("comment"));
             $commentaire->setNom($request->get('nom'));
             $commentaire->setNote($request->get('note'));
             $commentaire->setDateCom(new \DateTime('now'));
             $em->persist($commentaire);
             $em->flush();
-            $this->addFlash('success','comment ADED successfully');
+            $this->addFlash('success', 'comment ADED successfully');
 
             return $this->redirectToRoute('addC');
 
@@ -46,6 +48,35 @@ class CommentController extends AbstractController
         return $this->render('comment/addC.html.twig', [
 
         ]);
+    }
+        /**
+         * param CommentRepository $repository
+         * @return Response
+         * @Route("afficherC", name="afficherC")
+         */
+        public function afficher(CommentRepository $repository)
+    {
+        // $repo=$this->getDoctrine()->getRepository(Evenement::class);
+        $comment = $repository->findAll();
+        return $this->render('comment/afficherC.html.twig',
+            ['commentaire' => $comment]);
 
     }
+
+    /**
+         * @Route("/supp {id}", name="deleteC")
+         */
+        public function Delete($id, CommentRepository $repository)
+    {
+
+        $user = $repository->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        $this->addFlash('success','Commentaire Deleted successfully');
+        return $this->redirectToRoute('afficherC');
+
+    }
+
+
 }

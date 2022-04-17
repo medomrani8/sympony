@@ -38,12 +38,12 @@ class Evenement
      */
     private $nom;
 
-  /*  /**
+   /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateEven", type="date", nullable=false)
      */
-   # private $dateeven;
+    private $dateeven;
 
     /**
      * @var int
@@ -84,21 +84,21 @@ class Evenement
         $this->nom = $nom;
     }
 
-    /* /**
-      * @return \DateTime
-      */
-   # public function getDateeven(): \DateTime
-   # {
-    #    return $this->dateeven;
-  #  }
+    /**
+     * @return \DateTime
+     */
+    public function getDateeven(): ?\DateTime
+    {
+        return $this->dateeven;
+    }
 
-    /* /**
-       * @param \DateTime $dateeven
-       */
-   # public function setDateeven(\DateTime $dateeven): void
-   # {
-   #     $this->dateeven = $dateeven;
-   # }
+    /**
+     * @param \DateTime $dateeven
+     */
+    public function setDateeven(\DateTime $dateeven): void
+    {
+        $this->dateeven = $dateeven;
+    }
 
     /**
      * @return int
