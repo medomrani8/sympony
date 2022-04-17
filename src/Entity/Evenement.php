@@ -144,12 +144,19 @@ class Evenement
      */
     private $photo;
 
-    public function getPhoto(): ?string
+
+    /**
+     * @return string
+     */
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function setPhoto(?string $photo): self
+    /**
+     * @param string $photo
+     */
+    public function setPhoto( $photo)
     {
         $this->photo = $photo;
 

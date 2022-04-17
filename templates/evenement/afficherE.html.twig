@@ -29,6 +29,8 @@
                         <th>Nom</th>
                         <th>prix</th>
                         <th>recompense</th>
+                        <th>photo</th>
+
 
 
 
@@ -40,6 +42,7 @@
                             <td>{{ c.nom }}</td>
                             <td>{{ c.prix }}</td>
                             <td>{{ c.recompense }}</td>
+                            <td> <img style="width: 100px; height:100px" src="{{asset('uploads/images/') ~ c.photo }}" class="img-responsive" alt="Image"></td>
 
 
 

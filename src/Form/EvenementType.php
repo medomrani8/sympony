@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class EvenementType extends AbstractType
 {
@@ -23,6 +24,7 @@ class EvenementType extends AbstractType
                 // this is actually the default format for single_text
                 'format' => 'dd-MM-yyyy',
             ))
+            ->add('photo',fileType::class,array('label'=>'inserer une image','data_class' => null))
 
             ->add('ajouter',SubmitType::class)
 

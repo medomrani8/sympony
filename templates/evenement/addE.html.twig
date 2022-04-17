@@ -18,7 +18,7 @@
                 <h5 class="card-title">ADD EVENEMENT</h5>
 
                 <!-- General Form Elements -->
-                {{ form_start(formc,{attr:{novalidate:'novalidate'}}) }}
+                {{ form_start(formc, {'attr': {'novalidate':'novalidate','class':'form-sample','enctype':'multipart/form-data'}}) }}
                 <label for="inputText" class="col-sm-10 col-form-label">nom</label>
                 <div class="col-sm-10">
                     {{ form_widget(formc.nom,{'attr':{'class':'form-control'}}) }}
@@ -48,6 +48,14 @@
 
                 </div>
                 {{ form_errors(formc.dateeven,{'attr':{'class':'form-danger'}}) }}
+                <br>
+                <div class="col-sm-12" style="display: flex;align-items: center;justify-content: center">
+
+                    {{ form_widget(formc.photo) }}
+                </div>
+
+
+
 
 
                 <br/>

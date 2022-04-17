@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Categorie;
+
 use App\Entity\Evenement;
 use App\Form\EvenementType;
-use App\Repository\CategorieRepository;
 use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 
 class EvenementController extends AbstractController
 {
@@ -58,6 +60,22 @@ class EvenementController extends AbstractController
         $form = $this->createForm(EvenementType::class, $evenement);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $new=$form->getData();
+            $imageFile = $form->get('photo')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        'uploads/images',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $evenement->setPhoto($newFilename);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($evenement);
             $em->flush();
@@ -81,6 +99,22 @@ class EvenementController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $new=$form->getData();
+            $imageFile = $form->get('photo')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+                try {
+                    $imageFile->move(
+                        'uploads/images',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+                $evenement->setPhoto($newFilename);
+            }
+
+
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $this->addFlash('success','EVENEMENT UPDATED successfully');
