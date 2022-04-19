@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Evenement;
 use App\Form\EvenementType;
+use App\Repository\CommentRepository;
 use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -35,6 +36,21 @@ class EvenementController extends AbstractController
         $evenement = $repository->findAll();
         return $this->render('evenement/afficherE.html.twig',
             ['evenement' => $evenement]);
+
+    }
+    /**
+     * param EvenementRepository $repository
+     * @return Response
+     * @Route("afficherEfront", name="afficherEfront")
+     */
+    public function afficherfront(EvenementRepository $repository,CommentRepository $rep)
+    {
+        // $repo=$this->getDoctrine()->getRepository(Evenement::class);
+        $evenement = $repository->findAll();
+        $comment =$rep->findBy(['idEven'=>$evenement->]);
+
+        return $this->render('evenement/afficheEfront.html.twig',
+            ['evenement' => $evenement,'commentaire'=>$comment]);
 
     }
     /**
@@ -126,4 +142,6 @@ class EvenementController extends AbstractController
             'formev' => $form->createView()
         ]);
     }
+
+
 }
