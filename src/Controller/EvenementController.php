@@ -7,6 +7,8 @@ use App\Entity\Evenement;
 use App\Form\EvenementType;
 use App\Repository\CommentRepository;
 use App\Repository\EvenementRepository;
+use http\Env\Request;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,11 +45,16 @@ class EvenementController extends AbstractController
      * @return Response
      * @Route("afficherEfront", name="afficherEfront")
      */
-    public function afficherfront(EvenementRepository $repository,CommentRepository $rep)
+    public function afficherfront(EvenementRepository $repository,CommentRepository $rep , \Symfony\Component\HttpFoundation\Request $request , PaginatorInterface $paginator)
     {
         // $repo=$this->getDoctrine()->getRepository(Evenement::class);
-        $evenement = $repository->findAll();
-        $comment =$rep->findBy(['idEven'=>$evenement->]);
+
+        $evenement = $paginator->paginate(
+            $evenement = $repository->findAll(),
+            $request->query->getInt('page', 1),
+            3.
+        );
+        $comment =$rep->findAll();
 
         return $this->render('evenement/afficheEfront.html.twig',
             ['evenement' => $evenement,'commentaire'=>$comment]);

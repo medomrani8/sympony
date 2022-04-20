@@ -23,11 +23,11 @@ class CommentController extends AbstractController
     }
 
     /**
-     * @Route("/addC", name="addC")
+     * @Route("/addC {idEven}", name="addC")
      * @param Request $request
      * @return Response
      */
-    public function add(Request $request ): Response
+    public function add(Request $request, $idEven ): Response
     {
         $em = $this->getDoctrine()->getManager();
         $commentaire = new Commentaire();
@@ -38,11 +38,12 @@ class CommentController extends AbstractController
             $commentaire->setNom($request->get('nom'));
             $commentaire->setNote($request->get('note'));
             $commentaire->setDateCom(new \DateTime('now'));
+            $commentaire->setIdEven($idEven);
             $em->persist($commentaire);
             $em->flush();
             $this->addFlash('success', 'comment ADED successfully');
 
-            return $this->redirectToRoute('addC');
+            return $this->redirectToRoute('afficherEfront');
 
         }
         return $this->render('comment/addC.html.twig', [
