@@ -56,6 +56,7 @@ class EvenementController extends AbstractController
         );
         $comment =$rep->findAll();
 
+
         return $this->render('evenement/afficheEfront.html.twig',
             ['evenement' => $evenement,'commentaire'=>$comment]);
 
