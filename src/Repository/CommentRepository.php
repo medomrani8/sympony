@@ -19,4 +19,16 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Commentaire::class);
     }
 
+    public function find_Nb_Rec_Par_Status($type)
+    {
+
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            'SELECT DISTINCT  count(r.id) FROM   App\Entity\Commentaire r  where r.note = :note   '
+        );
+        $query->setParameter('note', $type);
+        return $query->getResult();
+    }
+
 }

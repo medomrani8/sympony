@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,6 +78,62 @@ class CommentController extends AbstractController
         $this->addFlash('success','Commentaire Deleted successfully');
         return $this->redirectToRoute('afficherC');
 
+    }
+
+    /**
+     * @Route("statcomment", name="statcomment")
+     */
+    public function evenement_stat(CommentRepository $evenementRepository): Response
+    {
+        $nbrs[] = array();
+
+        $e0= $evenementRepository->find_Nb_Rec_Par_Status("0");
+        dump($e0);
+        $nbrs[] = $e0[0][1];
+
+        $e1 = $evenementRepository->find_Nb_Rec_Par_Status("1");
+        dump($e1);
+        $nbrs[] = $e1[0][1];
+
+
+        $e2 = $evenementRepository->find_Nb_Rec_Par_Status("2");
+        dump($e2);
+        $nbrs[] = $e2[0][1];
+
+
+        $e3 = $evenementRepository->find_Nb_Rec_Par_Status("3");
+        dump($e3);
+        $nbrs[] = $e3[0][1];
+
+        $e4 = $evenementRepository->find_Nb_Rec_Par_Status("4");
+        dump($e4);
+        $nbrs[] = $e4[0][1];
+
+        $e5 = $evenementRepository->find_Nb_Rec_Par_Status("5");
+        dump($e5);
+        $nbrs[] = $e5[0][1];
+
+        /*
+                $e3=$activiteRepository->find_Nb_Rec_Par_Status("Diffence");
+                dump($e3);
+                $nbrs[]=$e3[0][1];
+        */
+
+        dump($nbrs);
+        reset($nbrs);
+        dump(reset($nbrs));
+        $key = key($nbrs);
+        dump($key);
+        dump($nbrs[$key]);
+
+        unset($nbrs[$key]);
+
+        $nbrss = array_values($nbrs);
+        dump(json_encode($nbrss));
+
+        return $this->render('commentaire/statecomment.html.twig', [
+            'nbr' => json_encode($nbrss),
+        ]);
     }
 
 
