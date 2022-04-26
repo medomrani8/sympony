@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Dompdf\Options;
+use Dompdf\Dompdf;
 
 
 class EvenementController extends AbstractController
@@ -149,6 +151,50 @@ class EvenementController extends AbstractController
         return $this->render('evenement/updateE.html.twig', [
             'formev' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/DownloadProduitsData", name="DownloadProduitsData")
+     */
+    public function DownloadProduitsData(EvenementRepository $repository)
+    {
+        $evenement=$repository->findAll();
+
+        // On définit les options du PDF
+        $pdfOptions = new Options();
+        // Police par défaut
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        // On instancie Dompdf
+        $dompdf = new Dompdf($pdfOptions);
+        $context = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE
+            ]
+        ]);
+        $dompdf->setHttpContext($context);
+
+        // On génère le html
+        $html = $this->renderView('evenement/download.html.twig',
+            ['evenement'=>$evenement ]);
+
+
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+
+        // On génère un nom de fichier
+        $fichier = 'Tableau des evenement.pdf';
+
+        // On envoie le PDF au navigateur
+        $dompdf->stream($fichier, [
+            'Attachment' => true
+        ]);
+
+        return new Response();
     }
 
 
