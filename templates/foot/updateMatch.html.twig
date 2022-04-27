@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Match{% endblock %}
+
+{% block body %}
+    <h1>Modifier Foot</h1>
+
+    {{ include('foot/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('display_match') }}">back to list</a>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{# {% extends 'base.html.twig' %} #}
+
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <table>
+            <thead>
+            <th>Id Arbitre</th>
+            <th>Nom Match</th>
+            <th>specialite</th>
+            <th>email</th>
+
+
+            </thead>
+            <tbody>
+            {% for arbitre in b  %}
+                <tr>
+                    <td>{{arbitre.idarb}}</td>
+                    <td>{{arbitre.nomarb}}</td>
+                    <td>{{arbitre.specialite}}</td>
+                    <td>{{arbitre.email}}</td>
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

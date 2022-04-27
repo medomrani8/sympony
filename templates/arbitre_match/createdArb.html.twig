@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+    <h1>Create new ArbitreMatch</h1>
+
+    {{ include('arbitre_match/_form.html.twig') }}
+
+    <a href="{{ path('display_arb') }}">Retourner à la liste</a>
+
+{% endblock %}
