@@ -1,0 +1,83 @@
+{% block stylesheets %}
+
+    <link href="{{ asset('BackOffice/assets/css/PDF.css') }}" rel="stylesheet" />
+
+
+{% endblock %}
+{% block body %}
+
+
+
+        <div class="example-wrapper">
+            <div class="card">
+                <div class="card-body">
+                            <script src="{{ asset('assets/js/jquery.js') }}"></script>
+                            <script
+                                    src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')}}">
+                            </script>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card my-4">
+                                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                                            <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3" style="display: flex;justify-content: space-evenly">
+                                                <h1 style="text-align: center; color:red;"><u>Table des Terrains</u></h1>
+
+                                        </div>
+                                            <br>
+                                            <br>
+                                        <div class="card-body px-0 pb-2">
+                                            <div class="table-responsive p-0">
+
+                                                <table border="10"
+                                                       style="background-color: green; border-color: blue;">
+                                                    <thead>
+                                                    <tr>
+
+
+
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><h1>ID Terrain</h1></th>
+                                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"><h1>Type Terrain</h1></th>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for terrain in b  %}
+                                                        <tr>
+                                                            <td>
+                                                            <div class="d-flex px-2 py-1">
+
+                                                                    <div class="d-flex flex-column justify-content-center">
+                                                                        <h6 class="mb-0 text-sm"> {{terrain.idTerrain}}</h6>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <p class="text-xs font-weight-bold mb-0">{{terrain.typeTerrain}}</p>
+                                                                <p class="text-xs text-secondary mb-0"></p>
+                                                            </td>
+
+
+                                                        </tr>
+
+                                                    {% endfor %}
+                                                    </tbody>
+
+
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    {% endblock %}
+
