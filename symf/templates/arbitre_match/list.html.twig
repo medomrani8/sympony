@@ -1,0 +1,67 @@
+{% block body %}
+
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #0f5132;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="row">
+
+        <div class="column">
+            <img src="{{ ('assetClient/images/ss.jpg') }}" height="200" width="700">
+        </div>
+        <center><p><h1>Arbitre List</h1></p>
+        </center>
+    </div>
+
+
+    <table>
+        <thead>
+        <th>Id Arbitre</th>
+        <th>Nom Match</th>
+        <th>specialite</th>
+        <th>email</th>
+
+
+        </thead>
+
+        {% for arbitre in b  %}
+
+            <tr>
+                <!-- Offre Provider -->
+                <td>{{arbitre.idarb}}</td>
+
+                <!-- Title -->
+                <td>{{arbitre.nomarb}}</td>
+
+
+                <!-- Description-->
+                <td>{{arbitre.specialite}}</td>
+
+                <!-- Image-->
+
+                <!-- Category -->
+                <td>{{arbitre.email}}</td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+
+    </body>
+
+{% endblock %}

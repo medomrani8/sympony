@@ -1,0 +1,67 @@
+{% block body %}
+
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #0f5132;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="row">
+
+        <div class="column">
+            <img src="{{ ('assetClient/images/dd.jpg') }}" height="200" width="700">
+        </div>
+        <center><p><h1>Match List</h1></p>
+        </center>
+    </div>
+
+
+    <table>
+        <thead>
+        <th>Id Match</th>
+        <th>Type Match</th>
+        <th>date Match</th>
+        <th>ID Arb</th>
+
+
+        </thead>
+
+        {% for foot in b  %}
+
+                <tr>
+                    <!-- Offre Provider -->
+                    <td>{{foot.idmatchh}}</td>
+
+                    <!-- Title -->
+                    <td>{{foot.typematchh}}</td>
+
+
+                    <!-- Description-->
+                    <td>{{foot.datematchh}}</td>
+
+                    <!-- Image-->
+
+                    <!-- Category -->
+                    <td>{{foot.idarb}}</td>
+
+
+                </tr>
+        {% endfor %}
+    </table>
+
+    </body>
+
+{% endblock %}

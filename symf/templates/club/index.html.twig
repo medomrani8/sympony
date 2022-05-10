@@ -1,0 +1,179 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+{#
+    <div class="example-wrapper">
+        <table>
+            <thead>
+            <th>idclub</th>
+            <th>categorie</th>
+            <th>validite</th>
+            <th>numtel</th>
+            <th>adresse</th>
+            <th>Supprimer</th>
+            <th>Modifier</th>
+            </thead>
+            <tbody>
+            {% for club in b  %}
+                <tr>
+                    <td>{{club.idclub}}</td>
+                    <td>{{club.categorie}}</td>
+                    <td>{{club.validite}}</td>
+                    <td>{{club.numtel}}</td>
+                    <td>{{club.adresse}}</td>
+                    <td>
+                        <a href="{{ path('supp_club',{'id':club.idclub}) }}">Supprimer</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('modifierclub',{'id':club.idclub}) }}">Modifier</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+#}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card my-4">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" id="search" class="form-control" placeholder="Search here">
+                </div>
+            </div>
+    <ul class="nav" id="side-menu">
+        <li>
+            <a href="#"> Entities<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level" id="entitiesNav">
+            </ul>
+        </li>
+    </ul><br><br><br><br>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function() {
+    var searchRequest = null;
+    $("#search").keyup(function() {
+        var minlength = 1;
+        var that = this;
+        var value = $(this).val();
+        var entitySelector = $("#entitiesNav").html('');
+        if (value.length >= minlength ) {
+            if (searchRequest != null)
+                searchRequest.abort();
+            searchRequest = $.ajax({
+                type: "GET",
+                url: "{{ path('ajax_search') }}",
+                data: {
+                    'q' : value
+                },
+                dataType: "text",
+                success: function(msg){
+                    //we need to check if the value is the same
+                    if (value===$(that).val()) {
+                        var result = JSON.parse(msg);
+                        $.each(result, function(key, arr) {
+                            $.each(arr, function(idclub, value) {
+                                if (key === 'b') {
+                                    if (idclub !== 'error') {
+                                        console.log(value[1]);
+                                        entitySelector.append('<li><b>'+value[1]+'</b><a href="display_club"')
+                                    } else {
+                                        entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                    }
+                                }
+                            });
+                        });
+                    }
+                }
+            });
+        }
+    });
+});
+    </script>
+
+
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                    <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                        <h6 class="text-white text-capitalize ps-3">Club table</h6>
+                        <span style="display: flex;align-items: center;justify-content: center; width: 150px" class="badge badge-sm bg-gradient-success"><a href="{{ path('adddd') }}">Ajouter Club</a></span>
+                        <span style="display: flex;align-items: center;justify-content: space-between; width: 150px " class="badge badge-sm bg-gradient-success"><a href="{{ path('display_CategorieClub') }}">Table Categorie</a></span>
+
+                    </div>
+                </div>
+                <div class="card-body px-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">idclub</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">categorie</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">validite</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">numtel</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">adresse</th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for club in b  %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0 text-sm">{{club.idclub}}</h6>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{club.categorie}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs font-weight-bold mb-0">{{club.validite}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs font-weight-bold mb-0">{{club.numtel}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex px-2 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                                <p class="text-xs font-weight-bold mb-0">{{club.adresse}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                    <td class="align-middle">
+                                        <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="{{ path('supp_club',{'id':club.idclub}) }}"><i class="material-icons text-sm me-2">delete</i>Delete</a>
+                                        <a class="btn btn-link text-dark px-3 mb-0" href="{{ path('modifierclub',{'id':club.idclub}) }}"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a href="{{path('trie1') }}"><i class="btn btn-danger" data-feather="arrow-down"></i>ascendant date</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

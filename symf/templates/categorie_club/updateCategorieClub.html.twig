@@ -1,0 +1,31 @@
+{#{{ form_start(t) }}#}
+
+{#{{ form_end(t) }}#}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(t,{'attr': {'class': 'text-start'}}) }}
+            <div class="input-group input-group-outline my-3">
+
+                {{ form_widget(t.nomentreneur, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(t.nomentreneur) }}
+
+            </div>
+            <div class="input-group input-group-outline my-3">
+                <label class="form-label">activite</label>
+                {{ form_widget(t.activite, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(t.activite) }}
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Enregistrer</button>
+    <button type="reset" class="btn bg-gradient-primary w-100 my-4 mb-2">cancel</button>
+
+    {{ form_end(t) }}
+{% endblock %}

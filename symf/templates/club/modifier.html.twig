@@ -1,0 +1,43 @@
+{#{{ form_start(t) }}#}
+
+{#{{ form_end(t) }}#}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            {{ form_start(t,{'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="input-group input-group-outline my-3">
+                <label class="form-label">categorie</label>
+                {{ form_widget(t.categorie, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(t.categorie) }}
+
+            </div>
+            <div class="input-group input-group-outline my-3">
+                <label class="form-label">validite</label>
+                {{ form_widget(t.validite, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(t.validite) }}
+
+            </div>
+            <div class="input-group input-group-outline my-3">
+                <label class="form-label">numtel</label>
+                {{ form_widget(t.numtel, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(t.numtel) }}
+
+            </div>
+            <div class="input-group input-group-outline my-3">
+                <label class="form-label">adresse</label>
+                {{ form_widget(t.adresse, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(t.adresse) }}
+
+            </div>
+
+
+        </div>
+    </div>
+    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Enregistrer</button>
+    <button type="reset" class="btn bg-gradient-primary w-100 my-4 mb-2">cancel</button>
+
+    {{ form_end(t) }}
+
+{% endblock %}

@@ -1,0 +1,215 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Hello HomeClientController!{% endblock %}
+
+{% block body %}
+
+
+
+    <section class="bet-this-game">
+        <div class="overlay pt-120 pb-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section-header text-center">
+
+                            <h2 class="title">LIST CLUBS</h2>
+
+                        </div>
+                    </div>
+                </div>
+                {% for clubs in b %}
+
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry justify-content-end">
+                            <a href="{{ path('show_clubs_cat',{'id':clubs.idclub}) }}">
+
+
+                            </a>
+                            <span>Afficher club categories</span>
+                            <div class="text mt-3 float-right d-block">
+
+                                <h3 class="heading">validite : <a href="#">{{ clubs.validite }}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row d-flex">
+                <h2 class="mb-4">Categorie stock</h2>
+
+                {% for c in c %}
+
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry justify-content-end">
+                            <a href="{{ path('show_products',{'id':c.getIdCat()}) }}" class="block-20" style="background-image: url({{ asset('assetClient/images/image_1.jpg') }});">
+                            </a>
+                            <div class="text mt-3 float-right d-block">
+
+                                <h3 class="heading"><a href="#">{{ c.nom }}</a></h3>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section testimony-section bg-bottom" style="background-image: url({{ asset('assetClient/images/bg_3.jpg') }});">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-7 text-center heading-section ftco-animate">
+                    <h2 class="mb-4">Tourist Feedback</h2>
+                </div>
+            </div>
+            <div class="row ftco-animate">
+                <div class="col-md-12">
+                    <div class="carousel-testimony owl-carousel ftco-owl">
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url({{ asset('assetClient/images/person_1.jpg') }})"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url({{ asset('assetClient/images/person_2.jpg') }})"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url({{ asset('assetClient/images/person_3.jpg') }})"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center pb-4">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Recent Post</h2>
+                </div>
+            </div>
+            <div class="row d-flex">
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end">
+                        <a href="blog-single.html" class="block-20" style="background-image: url('{{ asset('assetClient/images/image_1.jpg') }}');">
+                        </a>
+                        <div class="text mt-3 float-right d-block">
+                            <div class="d-flex align-items-center mb-4 topp">
+                                <div class="one">
+                                    <span class="day">21</span>
+                                </div>
+                                <div class="two">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">August</span>
+                                </div>
+                            </div>
+                            <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry justify-content-end">
+                        <a href="blog-single.html" class="block-20" style="background-image: url('{{ asset('assetClient/images/image_2.jpg') }}');">
+                        </a>
+                        <div class="text mt-3 float-right d-block">
+                            <div class="d-flex align-items-center mb-4 topp">
+                                <div class="one">
+                                    <span class="day">21</span>
+                                </div>
+                                <div class="two">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">August</span>
+                                </div>
+                            </div>
+                            <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry">
+                        <a href="blog-single.html" class="block-20" style="background-image: url('{{ asset('assetClient/images/image_3.jpg') }}');">
+                        </a>
+                        <div class="text mt-3 float-right d-block">
+                            <div class="d-flex align-items-center mb-4 topp">
+                                <div class="one">
+                                    <span class="day">21</span>
+                                </div>
+                                <div class="two">
+                                    <span class="yr">2019</span>
+                                    <span class="mos">August</span>
+                                </div>
+                            </div>
+                            <h3 class="heading"><a href="#">Why Lead Generation is Key for Business Growth</a></h3>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

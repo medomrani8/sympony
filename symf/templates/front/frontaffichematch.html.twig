@@ -1,0 +1,79 @@
+{% extends 'baseFront.html.twig' %}
+{% block body  %}
+
+
+<section class="bet-this-game">
+    <div class="overlay pt-120 pb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-header text-center">
+
+                        <h2 class="title">LISTE DES MATCH</h2>
+
+                    </div>
+                </div>
+            </div>
+            {% for foot in b %}
+                <div class="row cus-mar">
+                <div class="col-sm-6">
+                    <div class="single-area">
+                        <div class="head-area d-flex align-items-center bottom-item">
+
+                            <span>Match</span>
+                            <td>
+                                <a class="cmn-btn draw" href="">Reserver</a>
+                            </td>
+                        </div>
+                        <div class="main-content">
+                            <div class="team-single">
+
+                                <div class="img-area">
+                                    <img src="{{ asset('FrontOffice/assets/images/t11.jpg') }}">
+
+                                </div>
+                                <div class="card-body">
+
+                                    <p class="card-text">{{foot.idmatchh}}</p>
+                                    <p class="card-text">{{foot.typematchh}}</p>
+                                    <p class="card-text">{{foot.datematchh}}</p>
+                                    <p class="card-text">{{foot.idarb}}</p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{#    {% for terrain in b  %}#}
+{#    <div class="row">#}
+{#        <div class="col-sm-6">#}
+{#            <div class="card">#}
+{#                <div class="img-area">#}
+{#                    <img src="{{ asset('FrontOffice/assets/images/t11.jpg') }}">#}
+
+{#                </div>#}
+{#                <div class="card-body">#}
+
+{#                    <p class="card-text">{{ terrain.idTerrain }}</p>#}
+
+{#                    <p class="card-text"> {{ terrain.typeTerrain }}</p>#}
+{#                    <a href="#" class="btn btn-primary">Go somewhere</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#    </div>#}
+{#    </div>#}
+{#        </div>#}
+        </div>
+    </div>
+        </section>
+
+{% endblock %}
